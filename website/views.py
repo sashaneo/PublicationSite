@@ -4,12 +4,11 @@ from BlogSite.settings import PUBLISH_PASSWORD
 from .models import Contact, Publication, FeedbackForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .weather import get_weather_today
+import vars
 
 
 def index(request):
-    city_id = 706483
-    appid = "e14a34b19e13c330d813b9b5901a3d9c"
-    weather = get_weather_today(city_id, appid)
+    weather = get_weather_today(706483, vars.APP_ID)
     return render(request, 'index.html', {'weather': weather})
 
 
@@ -22,7 +21,6 @@ def contacts(request):
         if not amn or not ame or not mt:
             return render(request, 'contacts.html', {'error': 'Empty field!'})
 
-   
         FeedbackForm.objects.create(author_message_name=amn,
                                     author_message_email=ame,
                                     message_text=mt)
@@ -36,13 +34,11 @@ def contacts(request):
 
 
 def publications(request):
-
- 
     if request.POST.get('q'):
         search_req = request.POST.get('q')
         publication_object = Publication.objects.filter(title__icontains=search_req).order_by('-date')
 
-        #Pagination NEED REFACTOR FOR 'DRY'
+        # Pagination NEED REFACTOR FOR 'DRY'
         paginator = Paginator(publication_object, 10)  # 10 posts in each page
         page = request.GET.get('page')
         try:
@@ -53,7 +49,7 @@ def publications(request):
         except EmptyPage:
             # If page is out of range deliver last page of results
             posts = paginator.page(paginator.num_pages)
-   
+
         qty = publication_object.count()
         search_info = 'Search results qty: ' + str(qty)
         search_info = f'Number of results by "{search_req}" : {qty}'
@@ -68,7 +64,7 @@ def publications(request):
 
     publication_object = Publication.objects.all().order_by('-date')
 
-    #Pagination
+    # Pagination
 
     paginator = Paginator(publication_object, 10)  # 10 posts in each page
     page = request.GET.get('page')
@@ -113,8 +109,6 @@ def publish(request):
 
     return render(request, 'publish.html')
 
+
 def about(request):
     return render(request, 'about.html')
-
-
-

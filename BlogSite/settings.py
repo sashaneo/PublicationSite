@@ -11,12 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-
-
-
+import vars
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -26,11 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-SECRET_KEY = 'bfeb!oqcyi1h&gj6xs=5+h0*u$d1wnq4ze5m@35e$r%7qwc*$b'
+SECRET_KEY = vars.S_KEY
+
 DEBUG = False
 ALLOWED_HOSTS = ['sashaneo-test-webpublish.herokuapp.com', '127.0.0.1']
-
-
 
 # 'DJANGO_ALLOWED_HOSTS' должен быть в виде одной строки с хостами разделенными символом пробела
 # Для примера: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
@@ -62,8 +59,6 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-
-
 ROOT_URLCONF = 'BlogSite.urls'
 
 TEMPLATES = [
@@ -85,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BlogSite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -98,14 +92,13 @@ WSGI_APPLICATION = 'BlogSite.wsgi.application'
 # }
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd5balf9h9r0t98',
-        'USER': 'pgfnalnvxqctzw',
-        'PASSWORD' : 'cc1742279adbe9ab2bc264223a1ef4a2e25ed3059d2fd8e5b15d287edb054f7c',
-        'HOST': 'ec2-107-20-104-234.compute-1.amazonaws.com',
+        'NAME': vars.DB_NAME,
+        'USER': vars.DB_USER,
+        'PASSWORD': vars.DB_PASS,
+        'HOST': vars.DB_HOST,
         'PORT': 5432,
     }
 }
@@ -128,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -142,14 +134,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
-
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
@@ -161,7 +150,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-PUBLISH_PASSWORD = '123456'
-
-
-
+PUBLISH_PASSWORD = vars.PUBLISH_PASS
