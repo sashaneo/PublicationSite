@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create Publication
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h2>Create Publication</h2>
+
+    {#    <form method="post" action="/publish">#}
+    {#        {%  csrf_token %}#}
+    {#        <input type="text" name="password" placeholder="Type password">#}
+    {#        <br><br>#}
+    {#        <input type="text" name="title" placeholder="Type title">#}
+    {#         <br><br>#}
+    {#        <textarea name="text" placeholder="Type text"></textarea>#}
+    {#         <br><br>#}
+    {#        <button>Publish</button>#}
+    {##}
+    {#    </form>#}
+
+    <h3 style="color: red" align="center">{{ error }}</h3>
+    <br>
+    <form method="post" action="/publish">
+        {%  csrf_token %}
+        <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-10">
+                <input type="password" name="password" placeholder="Type password to create a publication" class="form-control" id="inputPassword3">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputText3" class="col-sm-2 col-form-label">Title<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-10">
+                <input type="text" name="title" placeholder="Type title" class="form-control" id="inputText3">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Text<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-10">
+                <textarea name="text" placeholder="Type text" class="form-control" id="inputEmail3"></textarea>
+            </div>
+        </div>
+        <button  class="btn btn-primary btn-lg btn-block">Publish</button>
+
+    </form>
+
+
+
+
+{% endblock %}
+

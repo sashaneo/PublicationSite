@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Contact Page
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <h2 style="text-align: center">Contact Page</h2>
+    <br>
+    {% for item in contact_details %}
+<h6 style="text-align: center"> {{ item.name }}<br>
+      {{ item.phone }} <br>
+    {{item.email}} <br>
+    <a href="{{item.link}}">linkedin.com/in/alexander-niedielkin/</a>
+</h6>
+<hr>
+    {% endfor %}
+
+    <h3 style="text-align: left; color: red">{{ error }}</h3>
+    <h3 style="text-align: left; color: green">{{ MessageOk }}</h3>
+    <br>
+
+
+        <h5 style="text-align: left; color: grey; font-style: italic">You can ask a question or leave your feedback in the form below</h5>
+        <br>
+        <form method="post">
+        {%  csrf_token %}
+        <div class="form-group row">
+            <label for="inputname" class="col-sm-2 col-form-label">Name<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-3">
+                <input type="text" name="name" placeholder="Type name" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputemail" class="col-sm-2 col-form-label">Email<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-3">
+                <input type="email" name="email" placeholder="Type email" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputtext" class="col-sm-2 col-form-label">Text<span aria-hidden="true" class="required" style="color: red">*</span>
+            </label>
+            <div class="col-sm-3">
+                <textarea name="text" placeholder="Type message" class="form-control" id="inputtext"></textarea>
+            </div>
+        </div>
+        <button  class="btn btn-primary btn btn">Send Message</button>
+        <br>
+
+
+    </form>
+<hr>
+{% endblock %}

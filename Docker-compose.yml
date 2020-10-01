@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  website:
+    build: .
+
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+
+    volumes:
+      - ./website/:/website/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev

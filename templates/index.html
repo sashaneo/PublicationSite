@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h3 style="text-align: center;">Welcome to the Publication site,it is just for learning web development with Django<br>
+        Please click <a href="/about">here</a> to see more information.</h3><br>
+        <p style="text-align: right;">By the way, about the weather for today,<br>
+            {{ weather.city }} City {{weather.temp}}&#8451; and {{weather.conditions}}.</p>
+        <p style="text-align: right; font-style: italic"; >api.openweathermap.org</p>
+        
+         
+{% endblock %}
+

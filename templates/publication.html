@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   {{ publication.title }}
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h2> {{ publication.title }}</h2>
+    <p style="font-style:italic">Published on  {{ publication.date|date:"H:i d/m/Y" }}</p>
+    <p> {{ publication.text|safe }} </p>
+    <hr>
+    <a href="/publications/" class="btn btn-outline-secondary my-2 my-sm-0" role="button">Back </a>
+    
+    
+    {% endblock %}
